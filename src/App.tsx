@@ -4,6 +4,8 @@ import {Container} from '@material-ui/core'
 import Users from './users'
 import SingleUser from './users/SingleUser'
 import CreateUser from './users/CreateUser'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -32,6 +34,7 @@ const App = () => {
         </Route>
       </Switch>
       </Router>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }

@@ -3,29 +3,23 @@ import React from 'react'
 import { useQuery } from "react-query";
 import {useParams} from 'react-router-dom'
 import './index.css'
+import axios from 'axios'
 
-const fetchUser = async ({ queryKey }) => {
+
+  async function fetchUser({queryKey}){
     const [_key, { id }] = queryKey
-    const response = await fetch(`http://localhost:3004/users/${id}`)
-  
-    if (!response.ok) {
-      throw new Error(response.statusText)
-    }
-  
-    return response.json()
-  }
+    const {data} = await axios.get(`http://localhost:3004/users/${id}`)    
+    return data
+}
+
   
 
 const SingleUser = () => {
 
 
     const { id } = useParams()
-    const { data, error, isLoading, isError, status } = useQuery(
-        ['user', { id }],
-        fetchUser
-      )
+    const { data, error, isLoading, isError, status } = useQuery(['user', { id }],fetchUser)
 
-      console.log(data)
     
     return (    
         <Container>
